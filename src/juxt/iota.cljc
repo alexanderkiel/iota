@@ -4,8 +4,7 @@
   (:require
     #?(:clj  [clojure.test]
        :cljs [cljs.test :include-macros true])
-    [clojure.set :as set]
-    [schema.core :as s]))
+    [clojure.set :as set]))
 
 ;; See the test at the end of this ns to understand the point of this code
 
@@ -62,10 +61,6 @@
                ;; Equals?
                := `(is (= ((as-test-function ~a) ~t) ~c))
                :!= `(is (not= ((as-test-function ~a) ~t) ~c))
-
-               ;; Schema checks
-               :- `(is (nil? (s/check ~c ((as-test-function ~a) ~t))))
-               :!- `(is (not (nil? (s/check ~c ((as-test-function ~a) ~t)))))
 
                ;; Is?
                :? `(is (~c ((as-test-function ~a) ~t)))

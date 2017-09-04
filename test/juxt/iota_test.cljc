@@ -4,13 +4,11 @@
   (:require
    [juxt.iota #?(:clj :refer :cljs :refer-macros) [given]]
    #?(:clj  [clojure.test :refer [deftest]]
-      :cljs [cljs.test :refer-macros [deftest]])
-   [schema.core :as s]))
+      :cljs [cljs.test :refer-macros [deftest]])))
 
 (deftest myself
   (given {:foo "foo" :bar "bar"}
     identity := {:foo "foo" :bar "bar"}
-    identity :- {:foo s/Str :bar s/Str}
     :foo := "foo"
     :foo :!= "bar"
     :foo :? string?
@@ -25,12 +23,10 @@
     )
   (given [1 2 3]
     first := 1
-    identity :- [s/Num]
     identity :<  [1 2 3 4]
     identity :!<  [1 3 4]
     identity :> [1 2]
     identity :!> [1 4]
     count := 3
-    count :- s/Num
     )
   )
